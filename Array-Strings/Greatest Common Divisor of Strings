@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<string.h>
+char* gcdOfStrings(char* string1, char* string2) {
+    static char result[1001];
+    int len1 = strlen(string1);
+    int len2 = strlen(string2);
+    for (int i = 0; i < len1 + len2; i++) {
+        if (string1[i % len1] !=string2[i % len2]) {
+            result[0] = '\0';
+            return result;
+        }
+    }
+    int a = len1, b = len2;
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    strncpy(result, string1, a);
+    result[a] = '\0';
+    return result;
+}
